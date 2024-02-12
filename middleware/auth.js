@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 
 // check is user is authenticated
 exports.isAuthenticated = async (req, res, next) => {
-  const { token } = req.cookies;
+  const { token } = req.headers;
   // Make sure token exists
   if (!token) {
     return next(new ErrorResponse("You must log in!", 401));

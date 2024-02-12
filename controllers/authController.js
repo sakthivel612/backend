@@ -12,7 +12,7 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({
       success: true,
       user,
-    });      
+    });
   } catch (error) {
     next(error);
   }
@@ -50,9 +50,10 @@ const sendTokenResponse = async (user, codeStatus, res) => {
   const token = await user.getJwtToken();
   res
     .status(codeStatus)
-    .cookie("token", token, { maxAge: 60 * 60 * 1000, httpOnly: true })
+    // .cookie("token", token, { maxAge: 60 * 60 * 1000, httpOnly: true })
     .json({
       success: true,
+      token: token,
       role: user.role,
     });
 };
